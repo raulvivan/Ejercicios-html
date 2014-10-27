@@ -1,0 +1,86 @@
+<html>
+<head><title>Visor de imágenes</title>
+
+<script language='javascript'>
+ var fotos = new Array ('Img0.gif','Img1.gif','Img2.gif','Img3.gif');
+
+ var Europa = new Array('España', 'Alemania', 'Francia', 'Giputxilandia');
+ var Asia = new Array('China', 'Japon', 'Corea del sur', 'Mongolia');
+ var Africa = new Array('Marruecos', 'Siria', 'Kenia', 'Sudafrica');
+ var America = new Array('USA', 'Canada', 'Peru', 'Mexico');
+ var Oceania = new Array('Nueva Guinea', 'Australia', 'Nueva Zelanda', 'Tasmania')
+
+ var actual = 0;
+
+ function Empezar(){
+      setInterval("Cambiar()", 500);
+ }
+
+ function Cambiar(){
+      actual++;
+      if(actual==fotos.length){
+        actual = 0;
+      }
+      document.getElementById('visor').src = fotos[actual];
+   }
+
+ function cambio(){
+      document.getElementById('visor').src = fotos[document.getElementById('selector').value];
+   }
+
+   function Parar(){
+
+   }
+
+   function moverImagen(ElEvento){
+    var evento = ElEvento || window.event ; 
+      var codigo = evento.charCode || evento.keyCode;
+      var caracter = String.fromCharCode (codigo);
+      var posicion = parseInt(document.getElementById('visor').style.left);
+      if(caracter == 'a'){
+        posicion -= 5;
+          document.getElementById('visor').style.left = posicion+"px";
+      }else if(caracter == 'd'){
+          posicion += 5;
+          document.getElementById('visor').style.left = posicion+"px";
+      }
+   }
+  
+  document.onkeypress = moverImagen;
+        
+</script>
+
+</head>
+
+<body>
+  <image src="Img0.gif" id='visor' style="position: absolute; left: 700px" height='150' width='165'>
+
+<center><font size=6 color='blue'>Visor de imágenes<br><br><Hr color='blue'><br>
+<form name='formul'>
+ <table border=1>
+  <tr><td colspan='4' align='center'>
+      <select id='selector' onchange='cambio()'>
+      <option value='elegir'>Elegir</option>
+      <option value='0'>Europa</option>
+      <option value='1'>Asia</option>
+      <option value='2'>Africa</option>
+      <option value='3'>America</option>
+      <option value='4'>Oceania</option>
+    </select>
+
+      </td>
+  </tr>
+  <tr>
+      <td align='center'>
+      <input type='button' onclick='Empezar()' onmouseover='Empezar()' onmouseout='Parar()' value='  Empezar '>
+      </td>
+      <td align='center'>
+      <input type='button' onclick='Parar()'  value='  Parar  '>
+      </td>
+  </tr>
+ </table>
+</form>
+<hr color='blue'></font></center>
+</body>
+</html>
+

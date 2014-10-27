@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ahorro</title>
+<style type="text/css">
+	#formulario{
+		float: left;
+		text-align: center;
+		margin-right: 200px;
+	}
+	#texto{
+		float: left;
+		background-color: lightblue;
+	}
+
+	#trabajador{
+		margin-bottom: 50px;
+	}
+
+</style>
+<script type="text/javascript">
+	var ahorradores = new Array();
+	var numero = 0;
+	var texto = '';
+	function Ahorro(nombre, cantidad){
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+		this.numero = numero;
+		numero++;
+	}
+
+	function Registrar(){
+		var nombre = document.getElementById('nombre').value;
+		var cantidad = parseInt(document.getElementById('cantidad').value);
+		ahorradores[numero] = new Ahorro(nombre, cantidad);
+		Escribir();
+		}
+
+	function Ahorrar(){
+		
+		ahorradores[document.getElementById('numero').value].cantidad += parseInt(document.getElementById('cantidad2').value);
+		Escribir();
+	}
+
+	function Gastar(){
+		if(parseInt(document.getElementById('numero').value) <= ahorradores.length-1){
+			if(parseInt(document.getElementById('cantidad2').value) <= ahorradores[document.getElementById('numero').value].cantidad){
+				ahorradores[document.getElementById('numero').value].cantidad -= parseInt(document.getElementById('cantidad2').value);
+				Escribir();
+			}else{
+				var nodo = document.createElement('p');
+				nodo.innerHTML = 'No hay dinero suficiente';
+				document.getElementById('texto').appendChild(nodo);
+			}
+		}else{
+			var nodo = document.createElement('p');
+				nodo.innerHTML = 'El usuario no existe';
+				document.getElementById('texto').appendChild(nodo);
+		}
+		
+		
+	}
+
+	function Escribir(){
+		for (var i = 0; i < ahorradores.length; i++) {
+			var nodo = document.createElement('p');
+			nodo.innerHTML = i+'-'+ahorradores[i].nombre+' tiene: '+ahorradores[i].cantidad+'\n';
+			document.getElementById('texto').appendChild(nodo);
+		}
+		
+	}
+
+</script>
+
+</head>
+<body>
+	<div id='formulario'>
+		<div id='trabajador'>
+			<fieldset>
+				<legend>Datos del trabajador</legend>
+				Nombre:<input type='text' id='nombre'><br>
+				Cantidad: <input type='number' id='cantidad'>
+				<br>
+				<button onclick='Registrar()'>Registrar</button>
+			</fieldset>
+		</div>
+		<div id='ahorro'>
+			<fieldset>
+				<legend>Datos del ahorro</legend>
+				Numero: <input type='number' id='numero'><br>
+				Cantidad: <input type='number' id='cantidad2'>
+				<br>
+				<button onclick='Ahorrar()'>Ahorrar</button>
+				<button onclick='Gastar()'>Gastar</button>
+			</fieldset>
+		</div>
+	</div>
+	<div id='texto'>
+
+	</div>
+</body>
+</html>

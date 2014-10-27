@@ -1,0 +1,31 @@
+<html>
+	<head><title>EJERCICIO 1 JAVASCRIPT</title></head>
+	<body>
+		<br /><center> Cálculo de N.I.F. <hr /><br /><br />
+	<!-- 	<script language='JavaScript'>
+			var Letras = new Array('T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E','T');
+			var NIF = prompt("Please enter your dni");
+			var dni = NIF.slice(0, NIF.length-1);
+			var letra = NIF.slice(NIF.length-1, NIF.length);
+			if(letra == Letras[dni%23]){
+				document.write("Es correcto");
+			}else{
+				document.write("No es correcto");
+			}
+		</script> -->
+		
+		<script type="text/javascript">
+			function calcular(){
+				var dias = document.getElementById("dias").value;
+				var fecha = new Date();
+				fecha.setMilliseconds(dias*86400000+fecha.getMilliseconds());
+				document.getElementById("fecha").value = fecha;
+				
+			}
+		</script>
+		
+		<input type="text" placeholder="Numero dias" id="dias"/>
+		<input type="text" placeholder="Fecha" id="fecha"/>
+		<input type="submit" value="Calcular" onclick="calcular()"/>
+	</body>
+</html>

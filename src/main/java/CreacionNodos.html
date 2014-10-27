@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Creacion nodos</title>
+<style type="text/css">
+	#parrafos{
+		float: left;
+		width: 500px;
+	}
+
+	#parrafos p{
+				border-style: solid;
+	}
+
+	.botones{
+		float: left;
+	}
+
+</style>
+
+<script type="text/javascript">
+var numNodos = 1;
+
+	function Añadir(){
+		var nuevoNodo = document.createElement('p');
+		nuevoNodo.innerHTML = 'Nodo numero'+numNodos;
+		document.getElementById('parrafos').appendChild(nuevoNodo);
+		numNodos++;
+	}
+
+	function Quitar(){
+		if(numNodos>1){
+			var elemento = document.getElementById('parrafos');
+			elemento.removeChild(elemento.lastChild);
+			numNodos--;
+		}
+		
+	}
+</script>
+
+</head>
+<body>
+	<div id='parrafos'>
+		<p>Este es un parrafo fijo</p>
+
+	</div>
+
+	<div class='botones'>
+		<button class='añadir' onclick='Añadir()'>Añadir parrafo</button>
+		<button class='quitar' onclick='Quitar()'>Quitar parrafo</button>
+	</div>
+
+</body>
+</html>
